@@ -4,12 +4,14 @@ import time
 from datetime import datetime, time as t
 
 url = 'https://media.streambrothers.com:8342/stream'
-output_file = '/Users/diego/radio_recordings/emision_test1.mp3'
 
 # Set start and end time
-start_time = datetime.now().replace(hour=11, minute=30, second=0, microsecond=0)
-# end_time = datetime.now().replace(hour=14, minute=10, second=0, microsecond=0)
-end_time = datetime.now().replace(hour=13, minute=20, second=0, microsecond=0)
+start_time = datetime.now().replace(hour=11, minute=26, second=0, microsecond=0)
+end_time = datetime.now().replace(hour=14, minute=10, second=0, microsecond=0)
+
+# Nombre del archivo: emisora + fecha + hora
+date_str = datetime.now().strftime('%Y_%m_%d')
+output_file = f'/Users/diego/radio_recordings/{date_str}_emision_cardinal_deportivo.mp3'
 
 # Open stream
 response = requests.get(url, stream=True)
@@ -31,5 +33,3 @@ with open(output_file, 'wb') as f:
 stream.close()
 
 print('stream recording finished')
-
-# No se abre automáticamente el archivo grabado
